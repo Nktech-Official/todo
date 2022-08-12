@@ -8,7 +8,7 @@ import {
   EditablePreview,
 } from "@chakra-ui/react";
 import { remove, ref, update } from "firebase/database";
-import { db, auth } from "../../FirebaseConfig";
+import { db } from "../../FirebaseConfig";
 import { DeleteIcon, EditIcon, CheckIcon } from "@chakra-ui/icons";
 export default function TodoCard(props) {
   const path = ref(db, `${localStorage.getItem("uid")}/todo/${props.itemKey}/`);

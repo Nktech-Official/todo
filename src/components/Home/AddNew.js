@@ -9,7 +9,7 @@ export default function AddNew() {
 
   const addToDatabase = () => {
     console.log(auth.currentUser.uid);
-    const id = push(ref(db, auth.currentUser.uid + "/" + "todo"));
+    const id = push(ref(db, `${auth.currentUser.uid}/todo`));
     console.log(id);
     set(id, {
       title: title,
