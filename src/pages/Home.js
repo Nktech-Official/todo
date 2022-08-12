@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import AddNew from "../components/Home/AddNew";
 import TodoCard from "../components/Home/TodoCard";
-import { off, onValue, ref } from "firebase/database";
+import { onValue, ref } from "firebase/database";
 import { db, auth } from "../FirebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 export default function Home() {
@@ -24,10 +24,11 @@ export default function Home() {
           if (datax.hasChildren()) {
             setHasTodo(true);
             const Json = datax.toJSON();
+
             const keys = Object.keys(Json);
             const postJson = keys.map((key) => {
               const element = Json[key];
-              return [element.title, element.Desc];
+              return [element.title, element.Desc, key];
             });
             setTodoList(postJson);
           } else {
@@ -57,7 +58,14 @@ export default function Home() {
         {hasTodo ? (
           todoList.map((item, key) => {
             console.log(key, item);
-            return <TodoCard key={key} title={item[0]} desc={item[1]} />;
+            return (
+              <TodoCard
+                key={key}
+                title={item[0]}
+                desc={item[1]}
+                itemKey={item[2]}
+              />
+            );
           })
         ) : (
           <Box>
