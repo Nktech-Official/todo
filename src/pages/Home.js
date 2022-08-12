@@ -28,7 +28,7 @@ export default function Home() {
             const keys = Object.keys(Json);
             const postJson = keys.map((key) => {
               const element = Json[key];
-              return [element.title, element.Desc, key];
+              return [element.title, element.Desc, key, element.chk];
             });
             setTodoList(postJson);
           } else {
@@ -57,13 +57,13 @@ export default function Home() {
       <Box mb={5}>
         {hasTodo ? (
           todoList.map((item, key) => {
-            console.log(key, item);
             return (
               <TodoCard
                 key={key}
                 title={item[0]}
                 desc={item[1]}
                 itemKey={item[2]}
+                chk={item[3]}
               />
             );
           })

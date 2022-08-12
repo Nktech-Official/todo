@@ -6,6 +6,7 @@ import {
   Editable,
   EditableInput,
   EditablePreview,
+  Checkbox,
 } from "@chakra-ui/react";
 import { remove, ref, update } from "firebase/database";
 import { db } from "../../FirebaseConfig";
@@ -15,6 +16,7 @@ export default function TodoCard(props) {
   const [uptitle, Setuptitle] = useState();
   const [updesc, setUpdesc] = useState();
   const [editable, setEditable] = useState(false);
+  const [checked, setChecked] = useState(props.chk || false);
   const Remove = () => {
     remove(path).catch((err) => {
       console.log(err);
@@ -28,6 +30,11 @@ export default function TodoCard(props) {
       Desc: updesc,
     }).then(() => {
       setEditable(false);
+    });
+  };
+  const markChecked = () => {
+    update(path, {
+      chk: !checked,
     });
   };
   const Edit = () => {
@@ -70,7 +77,9 @@ export default function TodoCard(props) {
                 defaultValue={props.title}
                 submitOnBlur={true}
               >
-                <EditablePreview />
+                <EditablePreview
+                  textDecoration={checked ? "line-through" : "none"}
+                />
                 <EditableInput
                   onChange={(e) => {
                     console.log(e.target.value);
@@ -79,6 +88,21 @@ export default function TodoCard(props) {
                 />
               </Editable>
               <Box h="100%" w="100%" display="flex" justifyContent="flex-end">
+                <Checkbox
+                  onChange={(e) => {
+                    setChecked(e.target.checked);
+                    markChecked();
+                    console.log(e.target.checked);
+                  }}
+                  color="white"
+                  mx={3}
+                  size="lg"
+                  colorScheme="green"
+                  isChecked={checked}
+                >
+                  Done
+                </Checkbox>
+
                 <Button
                   mx={3}
                   _hover={{
@@ -106,7 +130,9 @@ export default function TodoCard(props) {
               defaultValue={props.desc}
               submitOnBlur={true}
             >
-              <EditablePreview />
+              <EditablePreview
+                textDecoration={checked ? "line-through" : "none"}
+              />
               <EditableInput
                 onChange={(e) => {
                   console.log(e.target.value);
