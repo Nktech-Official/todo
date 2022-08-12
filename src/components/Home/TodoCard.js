@@ -49,8 +49,7 @@ export default function TodoCard(props) {
         borderRadius={12}
         bg={props.color ? props.color : "#49c0ec"}
         minW="75%"
-        w="fit-content"
-        maxW="90%"
+        w="75%"
         h="fit-content"
         minH="100px"
         display={props.msg ? "flex" : "block"}
