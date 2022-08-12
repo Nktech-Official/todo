@@ -48,7 +48,9 @@ export default function TodoCard(props) {
         py={3}
         borderRadius={12}
         bg={props.color ? props.color : "#49c0ec"}
-        w="75%"
+        minW="75%"
+        w="fit-content"
+        maxW="90%"
         h="fit-content"
         minH="100px"
         display={props.msg ? "flex" : "block"}
@@ -61,14 +63,6 @@ export default function TodoCard(props) {
         ) : (
           <>
             <Box display="flex">
-              {/* <Text
-                contentEditable={editable ? true : false}
-                fontSize={28}
-                color="white"
-                fontWeight={600}
-              >
-                {props.title}
-              </Text> */}
               <Editable
                 fontSize={28}
                 fontWeight={600}
@@ -87,41 +81,6 @@ export default function TodoCard(props) {
                   }}
                 />
               </Editable>
-              <Box h="100%" w="100%" display="flex" justifyContent="flex-end">
-                <Checkbox
-                  onChange={(e) => {
-                    setChecked(e.target.checked);
-                    markChecked();
-                    console.log(e.target.checked);
-                  }}
-                  color="white"
-                  mx={3}
-                  size="lg"
-                  colorScheme="green"
-                  isChecked={checked}
-                >
-                  Done
-                </Checkbox>
-
-                <Button
-                  mx={3}
-                  _hover={{
-                    bg: "red",
-                  }}
-                  onClick={Remove}
-                >
-                  <DeleteIcon />
-                </Button>
-                <Button
-                  mx={3}
-                  _hover={{
-                    bg: "green",
-                  }}
-                  onClick={editable ? upData : Edit}
-                >
-                  {editable ? <CheckIcon /> : <EditIcon />}
-                </Button>
-              </Box>
             </Box>
             {/* <Text contentEditable={editable ? true : false} color="white"> */}
             <Editable
@@ -140,6 +99,47 @@ export default function TodoCard(props) {
                 }}
               />
             </Editable>
+            <Box
+              mt={3}
+              h="100%"
+              w="100%"
+              display="flex"
+              justifyContent="flex-end"
+            >
+              <Checkbox
+                onChange={(e) => {
+                  setChecked(e.target.checked);
+                  markChecked();
+                  console.log(e.target.checked);
+                }}
+                color="white"
+                mx={3}
+                size="lg"
+                colorScheme="green"
+                isChecked={checked}
+              >
+                Done
+              </Checkbox>
+
+              <Button
+                mx={3}
+                _hover={{
+                  bg: "red",
+                }}
+                onClick={Remove}
+              >
+                <DeleteIcon />
+              </Button>
+              <Button
+                mx={3}
+                _hover={{
+                  bg: "green",
+                }}
+                onClick={editable ? upData : Edit}
+              >
+                {editable ? <CheckIcon /> : <EditIcon />}
+              </Button>
+            </Box>
             {/* 
             </Text> */}
           </>
