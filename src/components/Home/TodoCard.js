@@ -73,9 +73,11 @@ export default function TodoCard(props) {
                 overflowWrap="anywhere"
               >
                 <EditablePreview
+                  overflowWrap="anywhere"
                   textDecoration={checked ? "line-through" : "none"}
                 />
                 <EditableInput
+                  overflowWrap="anywhere"
                   onChange={(e) => {
                     console.log(e.target.value);
                     Setuptitle(e.target.value);
@@ -92,9 +94,11 @@ export default function TodoCard(props) {
               overflowWrap="anywhere"
             >
               <EditablePreview
+                overflowWrap="anywhere"
                 textDecoration={checked ? "line-through" : "none"}
               />
               <EditableInput
+                overflowWrap="anywhere"
                 onChange={(e) => {
                   console.log(e.target.value);
                   setUpdesc(e.target.value);
