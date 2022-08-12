@@ -35,6 +35,9 @@ export default function Home() {
             setHasTodo(false);
           }
         });
+      } else {
+        setTodoList(null);
+        setHasTodo(false);
       }
     });
   }, []);
