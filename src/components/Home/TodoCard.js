@@ -70,6 +70,7 @@ export default function TodoCard(props) {
                 color="white"
                 defaultValue={props.title}
                 submitOnBlur={true}
+                overflowWrap="anywhere"
               >
                 <EditablePreview
                   textDecoration={checked ? "line-through" : "none"}
@@ -88,6 +89,7 @@ export default function TodoCard(props) {
               color="white"
               defaultValue={props.desc}
               submitOnBlur={true}
+              overflowWrap="anywhere"
             >
               <EditablePreview
                 textDecoration={checked ? "line-through" : "none"}
